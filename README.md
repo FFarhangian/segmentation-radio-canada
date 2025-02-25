@@ -12,7 +12,7 @@ Ce projet analyse et segmente les utilisateurs de [ICI TOU.TV](https://ici.tou.t
 `Data_Preprocessing.py`: Ce script est responsable du **chargement, de l’exploration, de la visualisation et du prétraitement** de trois ensembles de données avant de les fusionner en un **seul dataset** pour l'étape suivante. Les données **ne sont pas encore agrégées** et restent sous leur forme brute, en préparation pour des analyses ultérieures, telles que le clustering.
 
 
-## 🔹 Étapes Clés
+## Étapes Clés
 
 ### 1. Chargement & Inspection des Données
 - Chargement des datasets : **`abo.csv`**, **`visionnements.csv`**, **`cms.csv`**.
