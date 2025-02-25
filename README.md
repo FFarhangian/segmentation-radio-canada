@@ -132,26 +132,11 @@ Nous appliquons trois méthodes de clustering pour comparer les performances et 
 
 ## Évaluation du Clustering
 
-Sa valeur est comprise entre **0** (aucune correspondance avec la classification de référence) et **1** (clustering parfait).
+Pour évaluer la qualité des clusters obtenus, nous utilisons plusieurs métriques :
 
-### **2. Silhouette Score**
-Le **Silhouette Score** évalue la qualité du clustering en mesurant la cohésion intra-cluster et la séparation inter-cluster. Sa formule est :
-
-\[
-S(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}
-\]
-
-où :
-- \( a(i) \) : Distance moyenne entre \( i \) et les autres points de son cluster.
-- \( b(i) \) : Distance moyenne entre \( i \) et les points du cluster voisin le plus proche.
-
-L’interprétation des valeurs :
-- **\( S(i) \approx 1 \)** → Bonne séparation des clusters.
-- **\( S(i) \approx 0 \)** → Clusters qui se chevauchent.
-- **\( S(i) < 0 \)** → Mauvais clustering (éléments mal assignés).
-
-### **3. Bayesian Information Criterion (BIC)**
-Utilisé pour comparer les modèles GMM et déterminer le **nombre optimal de clusters**. Une valeur plus faible de **BIC** indique un meilleur ajustement du modèle.
+- **Rand Index (RI)** : Compare la segmentation obtenue avec une classification de référence. Plus il est proche de 1, plus le clustering est précis.
+- **Silhouette Score** : Évalue la qualité de séparation des clusters. Une valeur proche de 1 indique des clusters bien définis.
+- **BIC (Bayesian Information Criterion)** : Permet d’optimiser le nombre de clusters pour les modèles GMM.
 
 Les résultats finaux sont sauvegardés et comparés dans **`df_clusters.csv`**.
 
