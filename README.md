@@ -111,6 +111,14 @@ Après la pré-segmentation, un **clustering séparé** est appliqué pour chaqu
    - Analyse des habitudes de visionnage sans abonnement.
    - Identification des **facteurs de conversion potentiels**.
 
+## Prétraitement des Données avant Clustering
+
+Avant d’appliquer les algorithmes de clustering, un **prétraitement des données** est effectué pour garantir une meilleure performance des modèles :
+
+- **Normalisation et mise à l’échelle des variables**  
+  - Utilisation de **StandardScaler** (Python) et **scale()** (R) pour ramener les variables à une même échelle.
+  - Évite que certaines variables dominent l’analyse en raison de leurs unités ou de leurs amplitudes différentes.
+
 ## Méthodes de Clustering
 
 Nous appliquons trois méthodes de clustering pour comparer les performances et obtenir des résultats robustes :
