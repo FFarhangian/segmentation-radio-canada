@@ -1,0 +1,8 @@
+install.packages(c(
+    "dplyr",         # Data manipulation
+    "ggplot2",       # Data visualization
+    "mclust",        # Model-Based Clustering (GMM)
+    "fossil",        # Rand Index calculation
+    "cluster",       # Clustering metrics
+    "bios2mds"       # Silhouette score computation
+))
