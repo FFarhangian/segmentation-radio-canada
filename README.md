@@ -69,6 +69,7 @@ Pour créer des segments d’utilisateurs pertinents, nous distinguons deux type
 - `pct_actif` : % de vidéos lancées manuellement.
 - `pct_progress_75` : % de vidéos où l’utilisateur a atteint 75 % du contenu.
 - `avg_videoinitiate` : Nombre moyen de vidéos initiées par utilisateur.
+- `Ados, Pour la famille, Pour les petits, Pour les plus grands`: Pourcentage de visionnages par cible d’audience.
 
 ### Variables descriptives (profilage)
 Utilisées pour **décrire les segments** mais **non incluses dans le clustering**.  
@@ -81,6 +82,79 @@ Utilisées pour **différencier les utilisateurs** et créer les segments :
 - `subscription_duration` : Durée de l’abonnement  
 
 Le jeu de données final **`df_segmented.csv`** est sauvegardé et prêt pour la segmentation.
+
+# Approche de Segmentation des Utilisateurs
+
+`Segmentation.py` & `Segmentation.R`: Ces scripts implémentent la segmentation des utilisateurs en deux étapes : une **pré-segmentation** basée sur des critères observables, suivie d’un **clustering post hoc** pour affiner les groupes. L’approche est réalisée à la fois en **Python** et en **R** pour une meilleure validation des résultats.
+
+## Pré-segmentation (Segmentation A Priori)
+Avant d’appliquer des méthodes de clustering, nous divisons les utilisateurs en deux groupes selon leur **historique d’abonnement** :
+
+1. **Ex-abonnés (`abonnement = 1`)**  
+   - Utilisateurs ayant déjà souscrit un abonnement mais qui l’ont annulé.  
+   - **Objectif** : Analyser les comportements menant à l’annulation et explorer des stratégies de réengagement.
+
+2. **Utilisateurs gratuits (`abonnement = 0`)**  
+   - Utilisateurs qui n'ont jamais été abonnés et ont uniquement consommé du contenu gratuit.  
+   - **Objectif** : Identifier les leviers qui pourraient les inciter à souscrire un abonnement.
+
+⚠️ Cette distinction est essentielle car **les stratégies marketing** pour convertir un ancien abonné et un utilisateur gratuit sont différentes.
+
+## Segmentation Post Hoc (Clustering)
+Après la pré-segmentation, un **clustering séparé** est appliqué pour chaque groupe afin d'identifier des sous-profils comportementaux.
+
+### **1. Clustering sur les ex-abonnés (`abonnement = 1`)**
+   - Détection des motifs de consommation précédant une annulation.
+   - Identification des profils d’utilisateurs les plus susceptibles de se réabonner.
+
+### **2. Clustering sur les utilisateurs gratuits (`abonnement = 0`)**
+   - Analyse des habitudes de visionnage sans abonnement.
+   - Identification des **facteurs de conversion potentiels**.
+
+## Méthodes de Clustering
+
+Nous appliquons trois méthodes de clustering pour comparer les performances et obtenir des résultats robustes :
+
+### **Clustering Hiérarchique (Dendrogramme)**
+   - Permet une structure arborescente des clusters.
+   - **Avantages** : Interprétable, ne nécessite pas de définir un nombre de clusters (`K`) à l’avance.
+   - **Inconvénients** : Lenteur sur les grands jeux de données.
+
+### **K-Means Clustering**
+   - Regroupe les données en **K clusters** en minimisant la variance intra-cluster.
+   - **Avantages** : Rapide, efficace et évolutif.
+   - **Inconvénients** : Sensible aux outliers, nécessite de fixer `K` à l’avance.
+
+### **GMM (Gaussian Mixture Model)**
+   - Modèle probabiliste permettant des clusters **non rigides** (un utilisateur peut appartenir partiellement à plusieurs groupes).
+   - **Avantages** : Détecte des formes complexes et des distributions chevauchantes.
+   - **Inconvénients** : Plus lent et moins interprétable que K-Means.
+
+## Évaluation du Clustering
+
+Sa valeur est comprise entre **0** (aucune correspondance avec la classification de référence) et **1** (clustering parfait).
+
+### **2. Silhouette Score**
+Le **Silhouette Score** évalue la qualité du clustering en mesurant la cohésion intra-cluster et la séparation inter-cluster. Sa formule est :
+
+\[
+S(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}
+\]
+
+où :
+- \( a(i) \) : Distance moyenne entre \( i \) et les autres points de son cluster.
+- \( b(i) \) : Distance moyenne entre \( i \) et les points du cluster voisin le plus proche.
+
+L’interprétation des valeurs :
+- **\( S(i) \approx 1 \)** → Bonne séparation des clusters.
+- **\( S(i) \approx 0 \)** → Clusters qui se chevauchent.
+- **\( S(i) < 0 \)** → Mauvais clustering (éléments mal assignés).
+
+### **3. Bayesian Information Criterion (BIC)**
+Utilisé pour comparer les modèles GMM et déterminer le **nombre optimal de clusters**. Une valeur plus faible de **BIC** indique un meilleur ajustement du modèle.
+
+Les résultats finaux sont sauvegardés et comparés dans **`df_clusters.csv`**.
+
 
 
 
