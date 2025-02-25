@@ -1,6 +1,13 @@
 # segmentation-radio-canada
 Segmentation des utilisateurs pour l'optimisation du funnel de conversion chez Radio-Canada.
 
+## Description
+Ce projet analyse et segmente les utilisateurs de [ICI TOU.TV](https://ici.tou.tv/) en fonction de leur comportement de visionnage et d’abonnement afin d’optimiser le tunnel de conversion, améliorer l’expérience utilisateur et affiner les stratégies d’engagement. L'approche repose sur l'exploration des données (`visionnements.csv`, `abo.csv`, `cms.csv`), la détection de tendances, et la création de segments pour mieux cibler les audiences et maximiser la rétention.
+
+![Plateforme ICI TOU.TV](chemin/vers/image.png)
+
+
+
 
 # Prétraitement des Données
 
@@ -34,10 +41,7 @@ Ce script est responsable du **chargement, de l’exploration, de la visualisati
 
 ### 5️⃣ Résultat Final
 - Sauvegarde du **dataset fusionné** sous le nom **`df.csv`**, intégrant les nouvelles caractéristiques pour les analyses futures.
-
 Ce traitement garantit que les données sont **structurées, exploitables et prêtes** pour les prochaines étapes d’analyse et de modélisation.
 
----
-✅ **Prochaine Étape** : Le dataset est maintenant prêt pour **des transformations supplémentaires et le clustering**.
 
 
