@@ -4,6 +4,18 @@ Ce projet analyse et segmente les utilisateurs de [ICI TOU.TV](https://ici.tou.t
 
 ![Plateforme ICI TOU.TV](ICITUOTV.png)
 
+# Dépendances
+
+Ce projet nécessite des bibliothèques pour **Python** et **R**.
+
+- **Dépendances Python** : listées dans [`requirements.txt`](requirements.txt)
+- **Dépendances R** : listées dans [`requirements_r.txt`](requirements_r.txt)
+
+### Installation rapide :
+
+**Python** : `pip install -r requirements.txt`
+
+**R** :`install.packages(scan("requirements_r.txt", what = "", quiet = TRUE))`
 
 
 
