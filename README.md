@@ -67,8 +67,7 @@ Utilisées pour **différencier les utilisateurs** et créer les segments :
 - `total_watch_time` / `avg_watch_time` : Temps total et moyen de visionnage  
 - `subscription_duration` : Durée de l’abonnement  
 
-Ce traitement permet de préparer les données pour la segmentation et l’analyse des utilisateurs.
-
+Le jeu de données final **`df_segmented.csv`** est sauvegardé et prêt pour la segmentation.
 
 
 
