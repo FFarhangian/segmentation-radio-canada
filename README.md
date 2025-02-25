@@ -158,7 +158,7 @@ Pour évaluer la qualité des clusters obtenus, nous utilisons plusieurs métriq
 - **Silhouette Score** : Évalue la qualité de séparation des clusters. Une valeur proche de 1 indique des clusters bien définis.
 - **BIC (Bayesian Information Criterion)** : Permet d’optimiser le nombre de clusters pour les modèles GMM.
 
-Les résultats finaux sont sauvegardés et comparés dans **`df_clusters.csv`**.
+Les résultats finaux sont sauvegardés et comparés dans **`df_segmented.csv`**.
 
 
 
