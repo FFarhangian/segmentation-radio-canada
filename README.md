@@ -44,8 +44,7 @@ Ce traitement garantit que les données sont **structurées, exploitables et pr�
 
 # Segmentation des Variables
 
-## `Segmentation_variables.py`
-Ce script affine l’ensemble de données issu de l’étape précédente en conservant uniquement les variables agrégées et pertinentes pour la segmentation. Il comprend une **exploration approfondie des données, une réduction de dimension, une sélection des variables et une détection des valeurs aberrantes** afin d’assurer des données propres et significatives.
+`Segmentation_variables.py`: Ce script affine l’ensemble de données issu de l’étape précédente en conservant uniquement les variables agrégées et pertinentes pour la segmentation. Il comprend une **exploration approfondie des données, une réduction de dimension, une sélection des variables et une détection des valeurs aberrantes** afin d’assurer des données propres et significatives.
 
 ## Étapes clés
 
