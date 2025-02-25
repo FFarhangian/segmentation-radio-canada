@@ -56,6 +56,19 @@ Ce traitement garantit que les données sont **structurées, exploitables et pr�
 ## Variables de segmentation
 
 Pour créer des segments d’utilisateurs pertinents, nous distinguons deux types de variables :  
+- `abonnement` : Indique si l'utilisateur est abonné ou non.
+- `For_All_Ages` : Contenu destiné aux familles et aux jeunes enfants.
+- `Educational_Informational` : Somme des genres éducatifs et informatifs.
+- `Fiction_Entertainment` : Somme des genres de fiction et divertissement.
+- `Talk_Show_Reality` : Somme des émissions de talk-show et téléréalité.
+- `Adventure_Youth` : Somme des contenus axés sur l’aventure et la jeunesse.
+- `pct_not_logged_in` : % de sessions où l’utilisateur n'était pas connecté.
+- `pct_gratuit` : % de contenus gratuits regardés.
+- `pct_enchainement` : % de vidéos auto-lancées.
+- `pct_reprise` : % de vidéos reprises.
+- `pct_actif` : % de vidéos lancées manuellement.
+- `pct_progress_75` : % de vidéos où l’utilisateur a atteint 75 % du contenu.
+- `avg_videoinitiate` : Nombre moyen de vidéos initiées par utilisateur.
 
 ### Variables descriptives (profilage)
 Utilisées pour **décrire les segments** mais **non incluses dans le clustering**.  
