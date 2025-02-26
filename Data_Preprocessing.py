@@ -46,12 +46,12 @@ print(f"Total Records: {total_records}")
 print(f"Unique IDs: {unique_count}")
 print(f"Duplicate IDs: {duplicate_count}")
 
-print("🔍 **visionnements.csv Analysis**")
+print("**visionnements.csv Analysis**")
 print(f"Total Records: {visionnements_total_records}")
 print(f"Unique rcid_hash: {visionnements_unique_count}")
 print(f"Duplicate rcid_hash: {visionnements_duplicate_count}\n")
 
-print("🔍 **cms.csv Analysis**")
+print("**cms.csv Analysis**")
 print(f"Total Records: {cms_total_records}")
 print(f"Unique emission: {cms_unique_count}")
 
@@ -434,12 +434,12 @@ visionnements['épisode'] = visionnements['épisode'].str.extract(r'(\d+)').asty
 merged_df = visionnements.merge(cms, left_on='programme', right_on='emission', how='left')
 df = merged_df.merge(abo, on='rcid_hash', how='left')
 
-print("\n✅ Final Merged Dataset Info:")
+print("\nFinal Merged Dataset Info:")
 print(df.info())
 
 # Save merged dataset
 df.to_csv("df.csv", index=False)
-print("\n✅ Merged dataset saved as 'df.csv'.")
+print("\nMerged dataset saved as 'df.csv'.")
 
 ##### Data Preprocessing & Feature Engineering
 
@@ -473,12 +473,12 @@ for col in date_columns:
 # Count users who have a subscription date but no cancellation date (right-censored)
 right_censored_users = df[(df['subscribe_on'].notna()) & (df['cancelled_on'].isna())]
 num_right_censored_users = right_censored_users['rcid_hash'].nunique()
-print(f"\n✅ Number of Right-Censored Users (Active Subscribers): {num_right_censored_users}")
+print(f"\nNumber of Right-Censored Users (Active Subscribers): {num_right_censored_users}")
 
 # Count how many times each user appears with different subscription periods
 multi_subscription_users = df.groupby('rcid_hash')['subscribe_on'].nunique()
 users_with_multiple_subscriptions = multi_subscription_users[multi_subscription_users > 1].count()
-print(f"\n✅ Users with Multiple Subscription Periods (Longitudinal Users): {users_with_multiple_subscriptions}")
+print(f"\nUsers with Multiple Subscription Periods (Longitudinal Users): {users_with_multiple_subscriptions}")
 
 # Create 'abonnement' feature (True if subscribed one time, False if 'subscribe_on' is missing)
 df['abonnement'] = df['subscribe_on'].notna()
@@ -559,39 +559,39 @@ print(missing_values[missing_values > 0])
 missing_percentage = (df.isnull().sum() / len(df)) * 100
 missing_percentage_df = missing_percentage.reset_index()
 missing_percentage_df.columns = ["Feature", "Missing Percentage"]
-print("\n✅ Missing Data Percentage:")
+print("\n Missing Data Percentage:")
 print(missing_percentage_df.sort_values(by="Missing Percentage", ascending=False))
 
 
 # Define engagement-related features
 missing_features = ['enchainement', 'type_declenchement', 'reprise_media', 'progress_marker_75_percent', 'progress_marker_95_percent']
 missing_by_modele = df.groupby('modele')[missing_features].apply(lambda x: x.isnull().mean() * 100)
-print("\n✅ Missing Data by Content Type (Modele):")
+print("\n Missing Data by Content Type (Modele):")
 print(missing_by_modele)
 
 # Check missing percentages for each feature by 'theme'
 missing_by_theme = df.groupby('theme')[missing_features].apply(lambda x: x.isnull().mean() * 100)
-print("\n✅ Missing Data by Theme:")
+print("\n Missing Data by Theme:")
 print(missing_by_theme)
 
 # Filter users with missing progress markers
 missing_progress_users = df[df['progress_marker_75_percent'].isna() | df['progress_marker_95_percent'].isna()]
 progress_vs_watch_time = missing_progress_users['content_time_spent'].describe()
-print("\n✅ Watch Time Statistics for Users with Missing Progress Markers:")
+print("\n Watch Time Statistics for Users with Missing Progress Markers:")
 print(progress_vs_watch_time)
 
 # Filter only rows where 'subscribe_on' is missing
 missing_subscription_df = df[df['subscribe_on'].isna()]
 missing_subscription_analysis = missing_subscription_df.groupby(['modele', 'statut_connexion']).size().reset_index(name='Count')
 missing_subscription_analysis['Percentage'] = (missing_subscription_analysis['Count'] / missing_subscription_analysis['Count'].sum()) * 100
-print("\n✅ Modele, Subscription & Login Status Analysis:")
+print("\n Modele, Subscription & Login Status Analysis:")
 print(missing_subscription_analysis)
 
 # Count occurrences of "anonyme" in rcid_hash
 anonyme_count = df[df['rcid_hash'] == "anonyme"].shape[0]
 non_hash_values = df[~df['rcid_hash'].str.match(r'^[a-fA-F0-9]+$', na=False)]
-print(f"\n✅ Number of 'anonyme' entries in rcid_hash: {anonyme_count}")
-print("\n✅ Non-Hash rcid_hash Values (first 20 unique):")
+print(f"\n Number of 'anonyme' entries in rcid_hash: {anonyme_count}")
+print("\n Non-Hash rcid_hash Values (first 20 unique):")
 print(non_hash_values[['rcid_hash']].drop_duplicates())
 
 
