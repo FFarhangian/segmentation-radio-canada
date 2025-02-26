@@ -47,7 +47,7 @@ df_segmented = df_segmented[(df_segmented['num_devices'] >= lower_bound) &
                                       (df_segmented['num_devices'] <= upper_bound)]
 
 # Display confirmation
-print(f"\n✅ Outliers removed! Remaining records: {df_segmented.shape[0]}")
+print(f"\n Outliers removed! Remaining records: {df_segmented.shape[0]}")
 
 
 
@@ -149,7 +149,7 @@ df_segmented.drop(columns=[
     'Aventure', 'Jeunesse', 'Jeu', 'Sport et aventure'
 ], inplace=True)
 
-print("\n✅ Genre Aggregation Complete! The dataset is now more compact with 4 main groups.")
+print("\n Genre Aggregation Complete! The dataset is now more compact with 4 main groups.")
 
 
 df_segmented['For_All_Ages'] = df_segmented[['Pour la famille', 'Pour les petits']].sum(axis=1)
@@ -210,5 +210,5 @@ plt.show()
 
 # Save the cleaned dataset
 df_segmented.to_csv("df_segmented.csv", index=False)
-print("\n✅ Prepared dataset for segmentation saved as 'df_segmented.csv'.")
+print("\n Prepared dataset for segmentation saved as 'df_segmented.csv'.")
 
