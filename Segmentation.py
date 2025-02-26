@@ -26,7 +26,7 @@ scaler = StandardScaler()
 df_abonnement_1_scaled = scaler.fit_transform(df_abonnement_1)
 df_abonnement_0_scaled = scaler.fit_transform(df_abonnement_0)
 
-print("\n✅ Data Loading and Filtering Completed Successfully!")
+print("\n Data Loading and Filtering Completed Successfully!")
 
 
 
@@ -35,7 +35,7 @@ subset_size = 10000  # Adjust based on available memory
 df_abonnement_1_sample = df_abonnement_1_scaled[np.random.choice(df_abonnement_1_scaled.shape[0], min(subset_size, df_abonnement_1_scaled.shape[0]), replace=False)]
 df_abonnement_0_sample = df_abonnement_0_scaled[np.random.choice(df_abonnement_0_scaled.shape[0], min(subset_size, df_abonnement_0_scaled.shape[0]), replace=False)]
 
-# ✅ **Hierarchical Clustering on Sampled Data**
+#  **Hierarchical Clustering on Sampled Data**
 plt.figure(figsize=(10, 5))
 linked = linkage(df_abonnement_1_sample, method='ward')
 dendrogram(linked)
@@ -97,7 +97,7 @@ df_segmented.loc[df_segmented['abonnement'] == 1, 'cluster'] = kmeans_1.fit_pred
 kmeans_0 = KMeans(n_clusters=optimal_k_0, random_state=42)
 df_segmented.loc[df_segmented['abonnement'] == 0, 'cluster'] = kmeans_0.fit_predict(df_abonnement_0_scaled)
 
-print("\n✅ K-Means Clustering Completed!")
+print("\n K-Means Clustering Completed!")
 
 
 
